@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/search_bar"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/search_box_bg">
+
+    <View
+        android:id="@+id/search_box_bg"
+        android:layout_width="308dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/search_bar_rectangle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/search_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/search_bar_button"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="@+id/search_box_bg"
+        app:layout_constraintEnd_toEndOf="@+id/search_box_bg"
+        app:layout_constraintTop_toTopOf="@+id/search_box_bg" />
+
+    <EditText
+        android:id="@+id/edit_text_search_tags"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:background="@null"
+        android:inputType="text"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/search_box_bg"
+        app:layout_constraintEnd_toStartOf="@+id/search_button"
+        app:layout_constraintStart_toStartOf="@+id/search_box_bg"
+        app:layout_constraintTop_toTopOf="@+id/search_box_bg" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
