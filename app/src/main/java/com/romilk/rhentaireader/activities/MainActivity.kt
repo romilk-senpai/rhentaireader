@@ -1,11 +1,13 @@
-package com.romilk.rhentaireader
+package com.romilk.rhentaireader.activities
 
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
-import android.widget.GridView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
+import com.romilk.rhentaireader.R
+import com.romilk.rhentaireader.adapters.SearchAdapter
 import kotlinx.coroutines.*
 import romilk.henparser.core.AppConfiguration
 import romilk.henparser.core.Manga
@@ -48,7 +50,7 @@ class MainActivity : AppCompatActivity() {
             val adapter = SearchAdapter(this@MainActivity, manga)
 
             runOnUiThread {
-                val g: GridView = findViewById(R.id.search_container)
+                val g: RecyclerView = findViewById(R.id.search_container)
 
                 g.adapter = adapter
             }
