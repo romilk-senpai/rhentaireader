@@ -5,11 +5,5 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.MainActivity">
-
-    <include
-        android:id="@+id/include_search_bar"
-        layout="@layout/u_search_bar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp" />
     
 </androidx.constraintlayout.widget.ConstraintLayout>

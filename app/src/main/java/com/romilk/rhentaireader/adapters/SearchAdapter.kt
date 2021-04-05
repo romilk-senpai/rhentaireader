@@ -17,13 +17,12 @@ import kotlinx.coroutines.launch
 import romilk.henparser.core.Manga
 
 
-class SearchAdapter(private val context: Context, private val mangaList: Array<Manga>) :
+class SearchAdapter(private val context: Context, private val mangaList: ArrayList<Manga>) :
     RecyclerView.Adapter<SearchAdapter.SearchViewHolder>() {
 
     class SearchViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val mangaNameView: TextView = view.findViewById(R.id.search_manga_page_text)
         val imageView: ImageView = view.findViewById(R.id.search_manga_page_image)
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
@@ -43,8 +42,6 @@ class SearchAdapter(private val context: Context, private val mangaList: Array<M
 
         holder.itemView.setOnClickListener {
             GlobalScope.launch {
-                manga.pagePreviewUrls
-                manga.pageUrls
                 val intent = Intent(context, MangaPageActivity::class.java)
                 intent.putExtra("MANGA", manga);
                 context.startActivity(intent)
@@ -54,5 +51,13 @@ class SearchAdapter(private val context: Context, private val mangaList: Array<M
 
     override fun getItemCount(): Int {
         return mangaList.size
+    }
+
+    fun addData(data: Array<Manga>) {
+        val oldIndex = mangaList.size - 1
+
+        this.mangaList.addAll(oldIndex, data.toList())
+
+        notifyItemRangeChanged(oldIndex, mangaList.size - 1)
     }
 }

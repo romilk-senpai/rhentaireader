@@ -27,17 +27,17 @@ class MangaReaderActivity : FragmentActivity() {
         viewPager = findViewById(R.id.pager)
         viewPager.setPageTransformer(ZoomOutPageTransformer())
 
-        val pagerAdapter = ScreenSlidePagerAdapter(this, manga.pageUrls)
+        val pagerAdapter = ScreenSlidePagerAdapter(this, manga.mangaData.pageUrls)
         viewPager.adapter = pagerAdapter
     }
 
-    override fun onBackPressed() {
+   /* override fun onBackPressed() {
         if (viewPager.currentItem == 0) {
             super.onBackPressed()
         } else {
             viewPager.currentItem = viewPager.currentItem - 1
         }
-    }
+    }*/
 
     private inner class ZoomOutPageTransformer : ViewPager2.PageTransformer {
 

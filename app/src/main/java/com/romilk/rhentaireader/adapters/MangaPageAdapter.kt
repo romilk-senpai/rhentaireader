@@ -45,12 +45,12 @@ class MangaPageAdapter(private val context: Context, private val manga: Manga) :
     }
 
     override fun onBindViewHolder(holder: MangaPageViewHolder, position: Int) {
-        val pageUrl = manga.pagePreviewUrls[position]
+        val pageUrl = manga.mangaData.pagePreviewUrls[position]
 
         Picasso.with(context).load(pageUrl).into(holder.imageView)
     }
 
     override fun getItemCount(): Int {
-        return manga.pagePreviewUrls.size
+        return manga.mangaData.pagePreviewUrls.size
     }
 }

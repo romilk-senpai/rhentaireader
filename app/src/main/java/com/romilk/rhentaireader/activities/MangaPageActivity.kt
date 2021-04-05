@@ -8,6 +8,8 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.romilk.rhentaireader.R
 import com.squareup.picasso.Picasso
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import romilk.henparser.core.Manga
 
 
@@ -23,33 +25,39 @@ class MangaPageActivity : AppCompatActivity() {
 
         gridLayout = findViewById(R.id.manga_page_container)
 
-        loadMangaPages(manga)
+        GlobalScope.launch {
+            loadMangaPages(manga)
 
-        val previewImageView = findViewById<ImageView>(R.id.manga_page_preview);
+            runOnUiThread {
+                val previewImageView = findViewById<ImageView>(R.id.manga_page_preview);
 
-        Picasso.with(this).load(manga.mangaPreviewUrl).into(previewImageView)
+                Picasso.with(this@MangaPageActivity).load(manga.mangaPreviewUrl).into(previewImageView)
+            }
+        }
 
     }
 
     private fun loadMangaPages(manga: Manga) {
-        for (url in manga.pagePreviewUrls) {
+        for (url in manga.mangaData.pageUrls) {
 
             val mangaView = LayoutInflater.from(this).inflate(
                 R.layout.manga_page_preview,
                 gridLayout, false
             )
 
-            val imageView: ImageView = mangaView.findViewById(R.id.manga_page_preview_image)
+            runOnUiThread {
+                val imageView: ImageView = mangaView.findViewById(R.id.manga_page_preview_image)
 
-            mangaView.setOnClickListener {
-                val intent = Intent(this, MangaReaderActivity::class.java)
-                intent.putExtra("MANGA", manga);
-                startActivity(intent)
+                mangaView.setOnClickListener {
+                    val intent = Intent(this, MangaReaderActivity::class.java)
+                    intent.putExtra("MANGA", manga);
+                    startActivity(intent)
+                }
+
+                Picasso.with(this).load(url).into(imageView)
+
+                gridLayout.addView(mangaView)
             }
-
-            Picasso.with(this).load(url).into(imageView)
-
-            gridLayout.addView(mangaView)
         }
     }
 }
