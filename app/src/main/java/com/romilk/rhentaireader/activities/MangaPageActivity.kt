@@ -29,9 +29,9 @@ class MangaPageActivity : AppCompatActivity() {
             loadMangaPages(manga)
 
             runOnUiThread {
-                val previewImageView = findViewById<ImageView>(R.id.manga_page_preview);
+                val previewImageView = findViewById<ImageView>(R.id.manga_page_preview)
 
-                Picasso.with(this@MangaPageActivity).load(manga.mangaPreviewUrl).into(previewImageView)
+                Picasso.with(this@MangaPageActivity).load(manga.mangaData.pageUrls.get(0)).into(previewImageView)
             }
         }
 
@@ -50,7 +50,7 @@ class MangaPageActivity : AppCompatActivity() {
 
                 mangaView.setOnClickListener {
                     val intent = Intent(this, MangaReaderActivity::class.java)
-                    intent.putExtra("MANGA", manga);
+                    intent.putExtra("MANGA", manga)
                     startActivity(intent)
                 }
 
